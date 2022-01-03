@@ -1,0 +1,2 @@
+stream undeploy --name renewalemailflow
+stream destroy --name renewalemailflow

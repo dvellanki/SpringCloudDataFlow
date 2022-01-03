@@ -1,0 +1,2 @@
+dataflow config server http://10.216.52.96/
+app unregister --name mysource --type processor

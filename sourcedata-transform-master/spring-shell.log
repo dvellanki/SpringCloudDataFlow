@@ -1,0 +1,155 @@
+// dataflow 1.2.0.RELEASE log opened at 2020-10-09 00:53:39
+exit
+// dataflow 1.2.0.RELEASE log closed at 2020-10-09 00:57:35
+// dataflow 1.2.0.RELEASE log opened at 2020-10-09 00:58:44
+exit
+// dataflow 1.2.0.RELEASE log closed at 2020-10-09 01:03:07
+// dataflow 1.2.0.RELEASE log opened at 2020-10-09 01:07:43
+exit
+// dataflow 1.2.0.RELEASE log closed at 2020-10-09 01:08:13
+// null 1.2.0.RELEASE log opened at 2020-10-09 01:09:09
+dataflow config server http://10.216.52.96/
+app register --name mysource --type source --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0
+// [failed] stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource | SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+// null 1.2.0.RELEASE log opened at 2020-10-09 01:12:37
+dataflow config server http://10.216.52.96/
+// [failed] app register --name mysource --type source --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0
+// dataflow 1.2.0.RELEASE log opened at 2020-10-09 01:16:05
+dataflow config server http://10.216.52.96/
+exit
+// dataflow 1.2.0.RELEASE log closed at 2020-10-09 01:17:55
+// null 1.2.0.RELEASE log opened at 2020-10-09 01:18:36
+dataflow config server http://10.216.52.96/
+// [failed] stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource | SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+// null 1.2.0.RELEASE log opened at 2020-10-09 01:21:17
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
+stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource | SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+// [failed] stream deploy renewalemailharbor --properties "deployer.http.kubernetes.createLoadBalancer=true" --platformName 'test'
+// null 1.2.0.RELEASE log opened at 2020-10-09 01:25:14
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
+// [failed] stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource | SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+// null 1.2.0.RELEASE log opened at 2020-10-09 01:28:02
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
+stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource | SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+// [failed] stream deploy renewalemailharbor --properties "deployer.http.kubernetes.createLoadBalancer=true" --platformName 'test'
+// null 1.2.0.RELEASE log opened at 2020-10-09 01:29:29
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
+// [failed] stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource | SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+// null 1.2.0.RELEASE log opened at 2020-10-09 01:31:12
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
+// [failed] stream destroy --name renewalemailnew
+// null 1.2.0.RELEASE log opened at 2020-10-09 01:32:52
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
+stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource | SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+stream deploy renewalemailnew --properties "deployer.http.kubernetes.createLoadBalancer=true" --platformName 'test'
+exit
+// null 1.2.0.RELEASE log closed at 2020-10-09 01:33:05
+// null 1.2.0.RELEASE log opened at 2020-10-09 02:41:21
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
+stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource | SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+stream deploy renewalemailnew --properties "deployer.http.kubernetes.createLoadBalancer=true" --platformName 'test'
+exit
+// null 1.2.0.RELEASE log closed at 2020-10-09 02:41:35
+// null 1.2.0.RELEASE log opened at 2020-10-09 09:23:56
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
+// [failed] stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource | SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+// null 1.2.0.RELEASE log opened at 2020-10-09 09:27:47
+dataflow config server http://10.216.52.96/
+app unregister --name mysource --type processor
+stream undeploy --name renewalemailnew
+stream destroy --name renewalemailnew
+// null 1.2.0.RELEASE log opened at 2020-10-09 09:28:59
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
+stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource | SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+stream deploy renewalemailnew --properties "deployer.http.kubernetes.createLoadBalancer=true" --platformName 'test'
+exit
+// null 1.2.0.RELEASE log closed at 2020-10-09 09:29:12
+// null 1.2.0.RELEASE log opened at 2020-10-09 09:35:01
+dataflow config server http://10.216.52.96/
+app unregister --name mysource --type processor
+stream undeploy --name renewalemailnew
+stream destroy --name renewalemailnew
+// null 1.2.0.RELEASE log opened at 2020-10-09 09:48:00
+dataflow config server http://10.216.52.96/
+// [failed] app unregister --name mysource --type processor
+// null 1.2.0.RELEASE log opened at 2020-10-09 09:51:54
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
+stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource | SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+stream deploy renewalemailnew --properties "deployer.http.kubernetes.createLoadBalancer=true" --platformName 'test'
+exit
+// null 1.2.0.RELEASE log closed at 2020-10-09 09:52:07
+// null 1.2.0.RELEASE log opened at 2020-10-09 10:54:27
+dataflow config server http://10.216.52.96/
+app unregister --name mysource --type processor
+stream undeploy --name renewalemailnew
+stream destroy --name renewalemailnew
+// null 1.2.0.RELEASE log opened at 2020-10-09 11:57:39
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
+stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource | SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+// null 1.2.0.RELEASE log opened at 2020-10-09 11:58:48
+dataflow config server http://10.216.52.96/
+app unregister --name mysource --type processor
+stream undeploy --name renewalemailnew
+stream destroy --name renewalemailnew
+// null 1.2.0.RELEASE log opened at 2020-10-09 12:00:53
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
+stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource | SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+// dataflow 1.2.0.RELEASE log opened at 2020-10-09 12:04:17
+exit
+// dataflow 1.2.0.RELEASE log closed at 2020-10-09 12:07:47
+// null 1.2.0.RELEASE log opened at 2020-10-09 12:08:42
+dataflow config server http://10.216.52.96/
+app unregister --name mysource --type processor
+// [failed] stream undeploy --name renewalemailnew
+// null 1.2.0.RELEASE log opened at 2020-10-09 12:10:38
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
+stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource | SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+// null 1.2.0.RELEASE log opened at 2020-10-09 12:14:19
+dataflow config server http://10.216.52.96/
+app unregister --name mysource --type processor
+// [failed] stream undeploy --name renewalemailnew
+// null 1.2.0.RELEASE log opened at 2020-10-09 12:15:38
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
+stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource | SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+// null 1.2.0.RELEASE log opened at 2020-10-09 12:16:41
+dataflow config server http://10.216.52.96/
+app unregister --name mysource --type processor
+// [failed] stream undeploy --name renewalemailnew
+// null 1.2.0.RELEASE log opened at 2020-10-09 12:19:27
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
+// [failed] stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource | SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+// null 1.2.0.RELEASE log opened at 2020-10-09 12:20:48
+dataflow config server http://10.216.52.96/
+app unregister --name mysource --type processor
+// [failed] stream undeploy --name renewalemailnew
+// null 1.2.0.RELEASE log opened at 2020-10-09 12:23:55
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
+// [failed] stream create --name renewalemailnew --definition "PollDBForRenewalData: jdbc --spring.datasource.driver-class-name=org.mariadb.jdbc.Driver --spring.datasource.url='jdbc:mysql://10.113.160.43:3306/sg_uat' --spring.datasource.username=sguatusr --spring.datasource.password=SgU@t@123# --tableName=payload_data --query='SELECT name,locale,sourcesystem,address FROM payload_data' --fixed-delay=30000 --max-rows-per-poll=1000 --time-unit=SECONDS  | TransformPayloadToJson: mysource --deployer.kubernetes.image-pull-policy='always'| SendToSendgridAPI: httpclient --logging.level.org=DEBUG --url=https://email-manager-api-gateway-uat.apps.wdc-np.itcna.vmware.com/sg/api/request/sendemail --headers-expression={'Authorization':'Basic YWRtaW46RGpleTdGZXJkODIzNERqVEdI','Content-Type':'application/json'} --http-method=POST  | ExtractTransactionIdFromResponse: transform --transformer.expression=#jsonPath(payload,'$.transactionId') | ResponseToLog: log"
+// null 1.2.0.RELEASE log opened at 2020-10-09 15:53:25
+dataflow config server http://10.216.52.96/
+app unregister --name mysource --type processor
+stream undeploy --name renewalemailnew
+stream destroy --name renewalemailnew
+// null 1.2.0.RELEASE log opened at 2020-10-09 16:18:39
+dataflow config server http://10.216.52.96/
+app unregister --name mysource --type processor
+// [failed] stream undeploy --name renewalemailnew
+// dataflow 1.2.0.RELEASE log opened at 2020-10-09 16:33:04
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
