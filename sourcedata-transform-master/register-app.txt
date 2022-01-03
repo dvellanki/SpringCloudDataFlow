@@ -1,0 +1,2 @@
+dataflow config server http://10.216.52.96/
+app register --name mysource --type processor --uri docker://harbor-repo.vmware.com/scdfrepo/sourcedata-transform:1.0 --force true
